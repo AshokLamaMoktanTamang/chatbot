@@ -1,13 +1,14 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import NxWelcome from './nx-welcome';
+import { theme } from "../assets/theme";
+import Layout from "../layout";
 
 export function App() {
   return (
-    <div>
-      <NxWelcome title="chatbot-webapp" />
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Layout />
+    </ThemeProvider>
   );
 }
 
