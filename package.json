@@ -2,7 +2,14 @@
   "name": "@chatbot/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx run-many --parallel --target=serve --projects=chatbot-api,chatbot-webapp",
+    "build": "nx build",
+    "start:webapp": "nx run chatbot-webapp:serve",
+    "build:webapp": "nx run chatbot-webapp:build",
+    "start:api": "nx run chatbot-api:serve",
+    "build:api": "nx run chatbot-api:build"
+  },
   "private": true,
   "dependencies": {
     "@swc/helpers": "~0.5.2",

@@ -6,7 +6,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/chatbot-webapp',
 
   server: {
-    port: 4200,
+    port: 3333,
     host: 'localhost',
   },
 
