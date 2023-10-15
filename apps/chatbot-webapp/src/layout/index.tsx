@@ -36,6 +36,11 @@ const Layout = () => {
                     backgroundColor: 'white',
                     borderRadius: '.15rem'
                 }}
+                width={'100%'}
+                maxWidth={'900px'}
+                height={'100%'}
+                maxHeight={'85vh'}
+                m={3}
             >
                 <Outlet />
             </Box>
