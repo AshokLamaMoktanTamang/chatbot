@@ -1,5 +1,5 @@
 import { createTheme, styled } from '@mui/material/styles';
-// import { MaterialDesignContent } from 'notistack'
+import { MaterialDesignContent } from 'notistack'
 
 export const theme = createTheme({
   palette: {
@@ -65,21 +65,21 @@ export const theme = createTheme({
   },
 });
 
-// export const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
-//   '&.notistack-MuiContent-success': {
-//     backgroundColor: theme.palette.success,
-//   },
-//   '&.notistack-MuiContent-error': {
-//     backgroundColor: theme.palette.error,
-//   },
-//   '&.notistack-MuiContent-info': {
-//     backgroundColor: theme.palette.info,
-//   },
-//   '&.notistack-MuiContent-default': {
-//     backgroundColor: theme.palette.primary,
-//   },
-//   '&.notistack-MuiContent-warning': {
-//     backgroundColor: theme.palette.warning,
-//   },
-// }));
+export const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
+  '&.notistack-MuiContent-success': {
+    backgroundColor: theme.palette.success,
+  },
+  '&.notistack-MuiContent-error': {
+    backgroundColor: theme.palette.error,
+  },
+  '&.notistack-MuiContent-info': {
+    backgroundColor: theme.palette.info,
+  },
+  '&.notistack-MuiContent-default': {
+    backgroundColor: theme.palette.primary,
+  },
+  '&.notistack-MuiContent-warning': {
+    backgroundColor: theme.palette.warning,
+  },
+}));
 

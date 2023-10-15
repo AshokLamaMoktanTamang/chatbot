@@ -1,3 +1,3 @@
 export default {
-  baseApiUrl: import.meta.env.NX_API_BASE_URL || '',
+  baseApiUrl: import.meta.env.VITE_API_BASE_URL || '',
 }
