@@ -7,6 +7,15 @@ const uploadPdf = async (formdata: FormData) => {
     return data;
 };
 
+const sendMessage = async (message: string) => {
+    const { data } = await axios.post('http://localhost:3001/chatbot', {
+        message
+    });
+
+    return data;
+};
+
 export {
-    uploadPdf
+    uploadPdf,
+    sendMessage
 }

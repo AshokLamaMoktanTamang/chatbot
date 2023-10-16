@@ -1,7 +1,7 @@
 import { useMutation } from "react-query"
 import { useSnackbar } from "notistack"
 
-import { uploadPdf } from "../api"
+import { sendMessage, uploadPdf } from "../api"
 
 type HttpResponse = {
     response: {
@@ -20,6 +20,16 @@ export const useUploadPdfFile = () => {
     return useMutation(uploadPdf, {
         onError: (error: HttpResponse) => {
             enqueueSnackbar(error.response.data.message || 'Failed to save file')
+        }
+    })
+}
+
+export const useSendMessage = () => {
+    const { enqueueSnackbar } = useSnackbar()
+    
+    return useMutation(sendMessage, {
+        onError: (error: HttpResponse) => {
+            enqueueSnackbar(error.response.data.message || 'Failed to generate response')
         }
     })
 }

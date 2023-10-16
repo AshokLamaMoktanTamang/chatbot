@@ -64,6 +64,9 @@ const ChatBox = () => {
                             </Tooltip>
                         </Stack>
                     }
+                    {
+                        isLoading && <>Loading...</>
+                    }
                 </Box>
             }
 
