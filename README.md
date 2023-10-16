@@ -7,57 +7,52 @@
 
 ## Start the app
 
-To start the development server run `nx serve chatbot-webapp`. Open your browser and navigate to http://localhost:3333/. Happy coding!
-
-
-## Generate code
-
-If you happen to use Nx plugins, you can leverage code generators that might come with it.
-
-Run `nx list` to get a list of available plugins and whether they have generators. Then run `nx list <plugin-name>` to see what generators are available.
-
-Learn more about [Nx generators on the docs](https://nx.dev/plugin-features/use-code-generators).
-
-## Running tasks
-
-To execute tasks with Nx use the following syntax:
-
+To start the development server run following command and open your browser and navigate to http://localhost:3333/. Happy coding!
 ```
-nx <target> <project> <...options>
+yarn
+```
+```
+yarn start
 ```
 
-You can also run multiple targets:
+## Running projects
+
+To execute the particular project run following command in terminal from root directory:
+
+1. For starting frontend code
+```
+yarn start:webapp
+```
+
+2. For starting Backend Code
 
 ```
-nx run-many -t <target1> <target2>
+yarn start:api
 ```
 
-..or add `-p` to filter specific projects
-
+3. To build the frontend
 ```
-nx run-many -t <target1> <target2> -p <proj1> <proj2>
+yarn build:webapp
+```
+
+4. To build the backend
+```
+yarn build:api
 ```
 
 Targets can be defined in the `package.json` or `projects.json`. Learn more [in the docs](https://nx.dev/core-features/run-tasks).
 
-## Want better Editor Integration?
-
-Have a look at the [Nx Console extensions](https://nx.dev/nx-console). It provides autocomplete support, a UI for exploring and running tasks & generators, and more! Available for VSCode, IntelliJ and comes with a LSP for Vim users.
-
 ## Ready to deploy?
 
-Just run `nx build demoapp` to build the application. The build artifacts will be stored in the `dist/` directory, ready to be deployed.
+To deploy the application in the docker container run the following commands in the terminal
 
-## Set up CI!
 
-Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.
+1. To build the docker image
+```
+docker build -t <App_Name> .    
+```
 
-- [Set up remote caching](https://nx.dev/core-features/share-your-cache)
-- [Set up task distribution across multiple machines](https://nx.dev/core-features/distribute-task-execution)
-- [Learn more how to setup CI](https://nx.dev/recipes/ci)
-
-## Connect with us!
-
-- [Join the community](https://nx.dev/community)
-- [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
-- [Follow us on Twitter](https://twitter.com/nxdevtools)
+2. To run the docker image
+```
+docker run -p <Container_Port>:<Expose_Port> <App_Name>
+```
