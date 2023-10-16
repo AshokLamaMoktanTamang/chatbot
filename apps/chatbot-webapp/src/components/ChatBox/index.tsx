@@ -7,12 +7,13 @@ import FileInput from "../FileInput";
 
 import { useUploadPdfFile } from "../../hooks";
 import axios from "axios";
+import MessageBox from "../MessageBox";
 
 const ChatBox = () => {
     const [file, setFile] = useState<File | null>(null)
     const [parsedContent, setParsedContent] = useState<string | null>(null)
 
-    const { mutate: uploadFile, isLoading } = useUploadPdfFile()
+    const { mutateAsync: uploadFile, isLoading } = useUploadPdfFile()
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const f = e.target.files && e.target.files[0]
@@ -26,7 +27,7 @@ const ChatBox = () => {
         const formData = new FormData();
         formData.append('pdfFile', file);
 
-        uploadFile(formData)
+        uploadFile(formData).then((data) => setParsedContent(data))
     }
 
     return (
@@ -40,28 +41,38 @@ const ChatBox = () => {
 
             <Divider />
 
-            <Box
-                display={'flex'}
-                justifyContent={'center'}
-                alignItems={'center'}
-                height={'100%'}
-            >
-                {!file && <FileInput onChange={handleFileChange} />}
+            {
+                !parsedContent &&
+                <Box
+                    display={'flex'}
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    height={'100%'}
+                >
+                    {!file && <FileInput onChange={handleFileChange} />}
 
-                {
-                    file &&
-                    <Stack direction={'row'} flexWrap={'wrap'}>
-                        <Button>
-                            {file.name}
-                        </Button>
-                        <Tooltip title="Process data">
-                            <Button variant="contained" onClick={parseFile}>
-                                <UploadFile />
+                    {
+                        file &&
+                        <Stack direction={'row'} flexWrap={'wrap'}>
+                            <Button>
+                                {file.name}
                             </Button>
-                        </Tooltip>
-                    </Stack>
-                }
-            </Box>
+                            <Tooltip title="Process data">
+                                <Button variant="contained" onClick={parseFile}>
+                                    <UploadFile />
+                                </Button>
+                            </Tooltip>
+                        </Stack>
+                    }
+                </Box>
+            }
+
+            {
+                parsedContent &&
+                <MessageBox
+                    defaultMessage={parsedContent}
+                />
+            }
         </Box>
     );
 }
