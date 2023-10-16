@@ -12,7 +12,7 @@ const ChatBox = () => {
     const [file, setFile] = useState<File | null>(null)
     const [parsedContent, setParsedContent] = useState<string | null>(null)
 
-    const {mutate: uploadFile, isLoading} = useUploadPdfFile()
+    const { mutate: uploadFile, isLoading } = useUploadPdfFile()
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const f = e.target.files && e.target.files[0]

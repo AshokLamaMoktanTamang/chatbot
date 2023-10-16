@@ -1,16 +1,22 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv'
 import pdfParse from 'pdf-parse';
 import expressFileUpload from 'express-fileupload'
+import OpenAI from "openai";
 import * as path from 'path';
+
+import config from './config';
 
 const app = express();
 
+dotenv.config()
 app.use(cors({
   origin: ['http://localhost:3333'],
   methods: 'GET,POST',
 }));
 app.use(expressFileUpload())
+app.use(express.json());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.get('/api', (_req, res) => {
@@ -33,6 +39,35 @@ app.post('/upload-pdf', (req: Request, res: Response) => {
       });
   } catch (error) {
     res.status(500).json({ message: 'Error parsing PDF' });
+  }
+});
+
+const openai = new OpenAI({
+  apiKey: config.openAiApiKey,
+  organization: "org-5E5KeWbH0RL9mhJ045L9lL72",
+});
+
+app.post('/chatbot', async (req: Request, res: Response) => {
+  try {
+    const message = req.body.message;
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          "role": "user",
+          "content": message || ''
+        }
+      ],
+      temperature: 1,
+      max_tokens: 256,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    });
+
+    res.json({ response });
+  } catch (error) {
+    res.status(500).json({ error: error || 'Chatbot response error' });
   }
 });
 
