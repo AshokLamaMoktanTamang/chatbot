@@ -31,7 +31,7 @@ const ChatBox = () => {
     }
 
     return (
-        <Box height={'100%'} width={'100%'} sx={{ overflowY: 'scroll' }}>
+        <Box height={'100%'} width={'100%'} sx={{ overflowY: 'scroll' }} position={'relative'}>
             <Typography
                 variant="h2"
                 component={'h2'}

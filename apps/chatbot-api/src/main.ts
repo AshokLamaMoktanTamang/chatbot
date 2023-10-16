@@ -44,7 +44,6 @@ app.post('/upload-pdf', (req: Request, res: Response) => {
 
 const openai = new OpenAI({
   apiKey: config.openAiApiKey,
-  organization: "org-5E5KeWbH0RL9mhJ045L9lL72",
 });
 
 app.post('/chatbot', async (req: Request, res: Response) => {
